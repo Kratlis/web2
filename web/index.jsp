@@ -19,7 +19,9 @@
     <th colspan="2" align="left">
       Введите координаты точки и радиус
     </th>
-    <td><label id="clock"></label></td>
+    <td>
+        <label id="clock"></label>
+    </td>
   </tr>
   <tr>
     <td id="areas" width="30%" align="center">

@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>ControllerServlet</servlet-class>
+        <servlet-class>main.ControllerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>AreaCheckServlet</servlet-name>
-        <servlet-class>AreaCheckServlet</servlet-class>
+        <servlet-class>main.AreaCheckServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AreaCheckServlet</servlet-name>

@@ -1,3 +1,5 @@
+package main;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +10,6 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        response.getWriter().println("It's GET in ControllerServlet");
 
         String xString = request.getParameter("x");
         String yString = request.getParameter("y").replace(",",".");
@@ -22,7 +23,6 @@ public class ControllerServlet extends HttpServlet {
                 Integer.parseInt(xString);
                 Double.parseDouble(yString);
                 Double.parseDouble(rString);
-                response.getWriter().println("Here");
                 request.getServletContext().getRequestDispatcher("/WEB-INF/checking").forward(request, response);
             } catch (Exception e){
                 request.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
@@ -33,7 +33,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().println("It's POST in ControllerServlet");
+        response.getWriter().println("It's POST in main.ControllerServlet");
         doGet(request, response);
     }
 }

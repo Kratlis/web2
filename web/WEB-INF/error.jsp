@@ -1,6 +1,7 @@
 <%@ page import="java.util.regex.Pattern" %>
 <%@ page import="java.util.ArrayList" %>
-<%-- page import="Point" --%>
+<%@ page import="main.Point" %>
+<%@ page import="main.AreaCheckServlet" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <% response.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -11,9 +12,6 @@
     <style>
         .warning{
             color: firebrick;
-        }
-        .response{
-            background-color: wheat;
         }
     </style>
 </head>
@@ -32,14 +30,47 @@
         return "";
     }
 
+    private String createTable(HttpServletRequest request){
+        ArrayList<Point> list = (ArrayList<Point>) request.getSession().getAttribute("list");
+        if (list == null){
+            return "";
+        }
+        return drawTable(list);
+    }
+
+    private String drawTable(ArrayList<Point> list){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<table class='response' align='center'><thead><tr align='center'>\n" +
+                "    <th> <h5>Х</h5></th>" +
+                "    <th> <h5>Y</h5></th>" +
+                "    <th> <h5>R</h5></th>" +
+                "    <th> <h5>Результат</h5></th>" +
+                "    <th> <h5>Время</h5></th>" +
+                "    </tr></thead>");
+
+        for (Point point: list) {
+            stringBuilder.append("<tr align='center'>" + "<td>").append(point.getX()).append("</td>")
+                    .append("<td>").append(point.getY()).append("</td>")
+                    .append("<td>").append(point.getR()).append("</td>")
+                    .append("<td>");
+//            if(point.isInArea()){
+//                stringBuilder.append("Попала");
+//            }
+//            else{
+//                stringBuilder.append("Не попала");
+//            }
+//            String f = (point.isInArea())?"Попала":"Не попала";
+            stringBuilder.append((point.isInArea()) ? "Попала" : "Не попала").append("</td><td>")
+                    .append(point.getTime());
+            stringBuilder.append("</td></tr>");
+        }
+
+        stringBuilder.append("</table>");
+        return String.valueOf(stringBuilder);
+    }
 
 %>
 <body>
-
-<%--<script>--%>
-<%--    document.formname.action="JspPage";--%>
-<%--    document.formname.submit;--%>
-<%--</script>--%>
 <%
     String warningX = "";
     if (request.getParameter("x") != null) {
@@ -56,8 +87,6 @@
 <p class="warning"><%= warningX %></p>
 <p class="warning"><%= warningY %></p>
 <p class="warning"><%= warningR %></p>
-<p>
-    <%--"here"+new Point().toString()--%>
-</p>
+<%=createTable(request)%>
 </body>
 </html>
