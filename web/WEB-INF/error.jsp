@@ -1,7 +1,7 @@
 <%@ page import="java.util.regex.Pattern" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="main.Point" %>
-<%@ page import="main.AreaCheckServlet" %>
+<%@ page import="java.util.Collections" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <% response.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -23,10 +23,6 @@
         if (!Pattern.matches("^[-+]?([0-5]([.,]\\d+)?)", y)) {
             return "Координата Y должна быть числом, которое находится в пределах от -5 до 5.";
         }
-//        double yValue = Double.parseDouble(y);
-//        if (yValue < -5 || yValue > 5){
-//            return "Координата Y должна находиться в пределах от -5 до 5.";
-//        }
         return "";
     }
 
@@ -39,6 +35,7 @@
     }
 
     private String drawTable(ArrayList<Point> list){
+        Collections.reverse(list);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table class='response' align='center'><thead><tr align='center'>\n" +
                 "    <th> <h5>Х</h5></th>" +
@@ -53,13 +50,6 @@
                     .append("<td>").append(point.getY()).append("</td>")
                     .append("<td>").append(point.getR()).append("</td>")
                     .append("<td>");
-//            if(point.isInArea()){
-//                stringBuilder.append("Попала");
-//            }
-//            else{
-//                stringBuilder.append("Не попала");
-//            }
-//            String f = (point.isInArea())?"Попала":"Не попала";
             stringBuilder.append((point.isInArea()) ? "Попала" : "Не попала").append("</td><td>")
                     .append(point.getTime());
             stringBuilder.append("</td></tr>");

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 @WebServlet(name = "main.AreaCheckServlet", urlPatterns = "/WEB-INF/checking")
@@ -28,6 +29,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     private String drawTable(ArrayList<Point> list){
+        Collections.reverse(list);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("<table class='response' align='center'><thead><tr align='center'>\n" +
                 "    <th> <h5>Х</h5></th>" +
@@ -42,13 +44,6 @@ public class AreaCheckServlet extends HttpServlet {
                     .append("<td>").append(point.getY()).append("</td>")
                     .append("<td>").append(point.getR()).append("</td>")
                     .append("<td>");
-//            if(point.isInArea()){
-//                stringBuilder.append("Попала");
-//            }
-//            else{
-//                stringBuilder.append("Не попала");
-//            }
-//            String f = (point.isInArea())?"Попала":"Не попала";
             stringBuilder.append((point.isInArea()) ? "Попала" : "Не попала").append("</td><td>")
                     .append(point.getTime());
             stringBuilder.append("</td></tr>");
@@ -66,7 +61,7 @@ public class AreaCheckServlet extends HttpServlet {
         }
         try{
             System.out.println("date: "+new Date());
-            Point p = new Point(Integer.parseInt(request.getParameter("x")), Double.parseDouble(request.getParameter("y")),
+            Point p = new Point(Double.parseDouble(request.getParameter("x")), Double.parseDouble(request.getParameter("y")),
                     Double.parseDouble(request.getParameter("r")), new Date());
             list.add(p);
         } catch (Exception e) {

@@ -1,18 +1,29 @@
 function onFormSubmit() {
     if (check()){
+        if (getUrlVars() > 0){
+            alert("Введите, пожалуйста, данные через форму.");
+            return false;
+        }
+
         let x = document.getElementById("x").value;
         let y = document.getElementById("y").value.replace(",",".");
         let r = document.getElementById("r").value;
 
-        alert(x/2);
-        alert(y/2);
+        drawPoint(document.getElementById("canvas").getContext('2d'), x, y, r);
         return true;
     }
     return false;
 }
 
-function check() {
+function getUrlVars(){
+    let vars = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+    });
+    return vars.length;
+}
 
+function check() {
     warningX.hidden = true;
     let yField = document.getElementById("y");
     yField.classList.remove("warning-text");
@@ -172,26 +183,24 @@ function clickOnArea() {
     let top = boundRect.top;
 
     let event = window.event;
-    let x = event.clientX - left;
-    let y = event.clientY - top;
+    let xClick = event.clientX - left;
+    let yClick = event.clientY - top;
     let r = document.getElementById("r").value;
-    alert((x - 150) / 120 * r + ":" + (150 - y) / 120 * r + ":" + r);
+    let x = (xClick - 150) / 120 * r;
+    let y = (150 - yClick) / 120 * r;
     drawPoint(canvas.getContext('2d'), x, y, r);
-    // document.getElementById("x").value = (x - 150) / 120 * r;
-    // document.getElementById("y").value = (150 - y) / 120 * r;
-    // document.getElementById("r")
-    request((x - 150) / 120 * r, (150 - y) / 120 * r, r);
+    request(x, y, r);
 }
 
 function drawPoint(context, x, y, r){
-    if (isInArea((x - 150) / 120 * r, (150 - y) / 120 * r, r)) {
+    if (isInArea(x, y, r)) {
         context.fillStyle = "red";
     } else{
         context.fillStyle = "green";
     }
     context.beginPath();
     context.strokeStyle = "black";
-    context.arc(x, y, 3, 0*Math.PI, 2*Math.PI);
+    context.arc(x/r * 120 + 150, 150 - y/r * 120, 3, 0*Math.PI, 2*Math.PI);
     context.closePath();
     context.fill();
 }

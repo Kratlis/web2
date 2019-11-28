@@ -50,7 +50,6 @@
               <p class="warning" hidden>Не выбрана координата X.</p>
             </td>
             <td width="60%" align="center" rowspan="5">
-                <div name="responses" id="responses"></div>
                 <iframe name="response" id="response"></iframe>
             </td>
           </tr>
@@ -110,6 +109,7 @@
             seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
         document.getElementById('clock').innerHTML = hours + ':' + minutes + ':' + seconds;
     }
+
     setInterval(clock, 1000);
     clock();
 
@@ -131,26 +131,6 @@
     warningYFormat.hidden = true;
     warningR.hidden = true;
   }
-
-  // $('#form').submit(function () {
-  //   alert("Answer");
-  //
-  //   $.ajax({
-  //     type:'get',
-  //     url:'control',
-  //     data:{'x':document.getElementById("x").value, 'y':document.getElementById("y").value, 'r':document.getElementById("r").value},
-  //     response:'text',
-  //     error: function (message) {
-  //       alert("Error: " + message);
-  //     },
-  //     success: function(data) {//возвращаемый результат от сервера
-  //       $("#response").html(data);
-  //       alert(data);
-  //       // $("#response").innerHTML = data;
-  //       // paint_context.fill();
-  //     }
-  //   });
-  // });
 </script>
 </body>
 </html>
