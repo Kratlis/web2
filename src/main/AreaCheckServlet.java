@@ -66,45 +66,45 @@ public class AreaCheckServlet extends HttpServlet {
             list.add(p);
         } catch (Exception e) {
             System.err.println("ACS: POINT");
-            request.getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
         }
 
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<!DOCTYPE HTML> " +
-                "<html lang='ru'> " +
-                "<head> " +
-                "<meta charset='UTF-8'> " +
-                "<style>" +
-                ".warning{" +
-                "            color: firebrick;" +
-                "        }" +
-                "body{" +
-                "    height: 100%;" +
-                "}" +
-                "table{" +
-                "    width: 100%;" +
-                "    font-family: Verdana, sans-serif;" +
-                "}" +
-                "th{" +
-                "    font-weight: lighter;" +
-                "    height: 30px;" +
-                "    vertical-align: bottom;" +
-                "}" +
-                ".coordinate{" +
-                "    font-family: Verdana, sans-serif;\n" +
-                "}" +
-                "\n" +
-                ".response{" +
-                "    background-color: wheat;" +
-                "}" +
-                "</style>" +
-                "</head> " +
-                "<body>");
-
-        out.println(drawTable(list));
-        out.println("</body>" +
-                "</html>");
+        request.getServletContext().getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);//        PrintWriter out = response.getWriter();
+//        out.println("<!DOCTYPE HTML> " +
+//                "<html lang='ru'> " +
+//                "<head> " +
+//                "<meta charset='UTF-8'> " +
+//                "<style>" +
+//                ".warning{" +
+//                "            color: firebrick;" +
+//                "        }" +
+//                "body{" +
+//                "    height: 100%;" +
+//                "}" +
+//                "table{" +
+//                "    width: 100%;" +
+//                "    font-family: Verdana, sans-serif;" +
+//                "}" +
+//                "th{" +
+//                "    font-weight: lighter;" +
+//                "    height: 30px;" +
+//                "    vertical-align: bottom;" +
+//                "}" +
+//                ".coordinate{" +
+//                "    font-family: Verdana, sans-serif;\n" +
+//                "}" +
+//                "\n" +
+//                ".response{" +
+//                "    background-color: wheat;" +
+//                "}" +
+//                "</style>" +
+//                "</head> " +
+//                "<body>");
+//
+//        out.println(drawTable(list));
+//        out.println("</body>" +
+//                "</html>");
     }
 
 

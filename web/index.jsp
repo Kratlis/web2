@@ -59,7 +59,7 @@
                 <input id="y" name="y" type="text" maxlength="17" placeholder="(-5; 5)"  autocomplete="off">
               </label>
                 <p class="warning" hidden>Введите число.</p>
-                <p class="warning" hidden>Координата Y должна находиться в пределах от -3 до 3.</p>
+                <p class="warning" hidden>Координата Y должна находиться в пределах от -5 до 5.</p>
             </td>
           </tr>
           <tr>
