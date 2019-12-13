@@ -20,12 +20,18 @@
       Введите координаты точки и радиус
     </th>
     <td>
-        <label id="clock"></label>
+      <label id="clock"></label>
     </td>
   </tr>
   <tr>
     <td id="areas" width="30%" align="center">
-      <div id="support"></div>
+      <div id="support">
+        <noscript>
+          <br><br>
+          <img src='area.jpg' alt='Область' width='420' height='380'>
+          <p class="warning-text">Включите, пожалуйста, JavaScript в браузере. Вы сможете тыкать на область :)</p>
+        </noscript>
+      </div>
       <canvas id="canvas" onclick="clickOnArea()"></canvas>
     </td>
     <td>
@@ -47,10 +53,10 @@
                   <option value="4">  4  </option>
                 </select>
               </label>
-              <p class="warning" hidden>Не выбрана координата X.</p>
+              <p class="warning-text" hidden>Не выбрана координата X.</p>
             </td>
             <td width="60%" align="center" rowspan="5">
-                <iframe name="response" id="response"></iframe>
+              <iframe name="response" id="response"></iframe>
             </td>
           </tr>
           <tr>
@@ -58,8 +64,8 @@
               <label class="coordinate" for="y"> Координата Y:  <br><br>
                 <input id="y" name="y" type="text" maxlength="17" placeholder="(-5; 5)"  autocomplete="off">
               </label>
-                <p class="warning" hidden>Введите число.</p>
-                <p class="warning" hidden>Координата Y должна находиться в пределах от -5 до 5.</p>
+              <p class="warning-text" hidden>Введите число.</p>
+              <p class="warning-text" hidden>Координата Y должна находиться в пределах от -5 до 5.</p>
             </td>
           </tr>
           <tr>
@@ -74,7 +80,7 @@
                   <option value="3">  3  </option>
                 </select>
               </label>
-                <p class="warning" hidden>Не выбран радиус R.</p>
+              <p class="warning-text" hidden>Не выбран радиус R.</p>
             </td>
           </tr>
           <tr>
@@ -102,31 +108,27 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 
 <script>
-    function clock() {
-        let date = new Date(),
+  function clock() {
+    let date = new Date(),
             hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
             minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
             seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
-        document.getElementById('clock').innerHTML = hours + ':' + minutes + ':' + seconds;
-    }
+    document.getElementById('clock').innerHTML = hours + ':' + minutes + ':' + seconds;
+  }
+  setInterval(clock, 1000);
+  clock();
 
-    setInterval(clock, 1000);
-    clock();
-
-    var warningX = document.getElementsByClassName("warning")[0];
-    var warningYFormat = document.getElementsByClassName("warning")[1];
-    var warningYValue = document.getElementsByClassName("warning")[2];
-    var warningR = document.getElementsByClassName("warning")[3];
-
-    var xValid = false;
-    var yValid = false;
-    var rValid = false;
-
-
+  var warningX = document.getElementsByClassName("warning-text")[0];
+  var warningYFormat = document.getElementsByClassName("warning-text")[1];
+  var warningYValue = document.getElementsByClassName("warning-text")[2];
+  var warningR = document.getElementsByClassName("warning-text")[3];
+  var xValid = false;
+  var yValid = false;
+  var rValid = false;
   function clearForm() {
     warningX.hidden = true;
     let yField = document.getElementById("y");
-    yField.classList.remove("warning-text");
+    yField.classList.remove("warning-field");
     warningYValue.hidden = true;
     warningYFormat.hidden = true;
     warningR.hidden = true;

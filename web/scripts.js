@@ -26,7 +26,7 @@ function getUrlVars(){
 function check() {
     warningX.hidden = true;
     let yField = document.getElementById("y");
-    yField.classList.remove("warning-text");
+    yField.classList.remove("warning-field");
     warningYValue.hidden = true;
     warningYFormat.hidden = true;
     warningR.hidden = true;
@@ -59,23 +59,23 @@ function checkY() {
     let yField = document.getElementById("y");
     // /[^0-9,.+-]/.test(yField.value)
     if (yField.value === '') {
-        yField.classList.add("warning-text");
+        yField.classList.add("warning-field");
         warningYFormat.hidden = false;
         warningYValue.hidden = false;
         yValid = false;
     } else if (!/^[-+]?([0-5]([.,]\d+)?)/.test(yField.value)){
-        yField.classList.add("warning-text");
+        yField.classList.add("warning-field");
         warningYValue.hidden = false;
         yValid = false;
     } else{
         console.log(parseFloat(yField.value));
         let y = yField.value;
         if (y < -5 || y > 5){
-            yField.classList.add("warning-text");
+            yField.classList.add("warning-field");
             warningYValue.hidden = false;
             yValid = false;
         } else {
-            yField.classList.remove("warning-text");
+            yField.classList.remove("warning-field");
             warningYFormat.hidden = true;
             warningYValue.hidden = true;
             yValid = true;

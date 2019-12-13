@@ -35,7 +35,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             }
             case ("x value"):{
-                addMessageInList(request, "Координата X должна быть равна одному из указанных значений: -4, -3, -2, -1, 0, 1, 2, 3, 4.");
+                addMessageInList(request, "Введите координату X.");
                 break;
             }
             case ("y parsing"):{
@@ -51,7 +51,7 @@ public class ControllerServlet extends HttpServlet {
                 break;
             }
             case ("r value"):{
-                addMessageInList(request, "Радиус R должен быть равен одному из указанных значений: 1, 1.5, 2, 2.5, 3.");
+                addMessageInList(request, "Введите радиус R.");
                 break;
             }
             default:addMessageInList(request, "Unidentified Error");
@@ -81,10 +81,6 @@ public class ControllerServlet extends HttpServlet {
         }
         try {
             double x = Double.parseDouble(xString.replace(",","."));
-            if ((x != -4.0D) && (x != -3.0D) && (x != -2.0D) && (x != -1.0D) && (x != 0D) && (x != 1.0D) && (x != 2.0D) && (x != 3.0D) && (x != 4.0D)){
-                writeErrorMessage(request, "x value");
-                return false;
-            }
         } catch (Exception e){
             writeErrorMessage(request, "x parsing");
             return false;
@@ -117,10 +113,6 @@ public class ControllerServlet extends HttpServlet {
         }
         try {
             double r = Double.parseDouble(rString.replace(",","."));
-            if ((r != 1.0D) && (r != 1.5D) && (r != 2.0D) && (r != 2.5D) && (r != 3.0D)){
-                writeErrorMessage(request, "r value");
-                return false;
-            }
         } catch (Exception e){
             writeErrorMessage(request, "r parsing");
             return false;

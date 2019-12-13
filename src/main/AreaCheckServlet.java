@@ -28,6 +28,7 @@ public class AreaCheckServlet extends HttpServlet {
         return config;
     }
 
+/*
     private String drawTable(ArrayList<Point> list){
         Collections.reverse(list);
         StringBuilder stringBuilder = new StringBuilder();
@@ -52,6 +53,7 @@ public class AreaCheckServlet extends HttpServlet {
         stringBuilder.append("</table>");
         return String.valueOf(stringBuilder);
     }
+*/
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Point> list = (ArrayList<Point>) request.getSession().getAttribute("list");

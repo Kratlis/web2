@@ -7,9 +7,8 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <title>Title</title>
     <style>
-        .warning{
+        .warning-field{
             color: firebrick;
         }
         .response{
@@ -32,9 +31,10 @@
 <% }} %>
 <%
     ArrayList<Point> list = (ArrayList<Point>) request.getSession().getAttribute("list");
-        if (list != null){
-            Collections.reverse(list);
-            %>
+    if (list != null){
+        ArrayList<Point> points = (ArrayList<Point>) list.clone();
+        Collections.reverse(points);
+        %>
 <table class='response' align='center'>
     <thead>
     <tr align='center'>
@@ -45,7 +45,7 @@
         <th> <h5>Время</h5></th>
     </tr>
     </thead>
-    <% for (Point point: list) {%>
+        <% for (Point point: points) {%>
     <tr align='center'>
         <td><%= point.getX()%></td>
         <td><%=point.getY()%></td>
@@ -53,7 +53,8 @@
         <td><%= (point.isInArea()) ? "Попала" : "Не попала"%></td>
         <td><%=point.getTime()%></td>
     </tr>
+    <%}%>
 </table>
-<% }} %>
+<% } %>
 </body>
 </html>

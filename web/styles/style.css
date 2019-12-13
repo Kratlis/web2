@@ -46,11 +46,11 @@ iframe{
     border: none;
 }
 
-.warning{
+.warning-text{
     color: firebrick;
 }
-.warning-text{
-@extend .warning;
+.warning-field{
+    color: firebrick;
     border-color: firebrick;
 }
 
