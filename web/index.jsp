@@ -1,3 +1,6 @@
+<%@ page import="main.Point" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Collections" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -5,9 +8,10 @@
   <meta charset="utf-8">
   <title>Область</title>
   <link rel="stylesheet" href="styles/style.css">
-  <script src="scripts.js"></script>
+  <script src="js/scripts.js"></script>
 </head>
 <body onload="drawCanvas('no')">
+<canvas id="stars" ></canvas>
 <header>
   <p>Кубикова Екатерина Алексеевна</p>
   <p>P3200</p>
@@ -21,6 +25,7 @@
     </th>
     <td>
       <label id="clock"></label>
+      </td><td>
     </td>
   </tr>
   <tr>
@@ -33,6 +38,8 @@
         </noscript>
       </div>
       <canvas id="canvas" onclick="clickOnArea()"></canvas>
+<%--     TODO: starrrs--%>
+      <script src="js/stars.js"></script>
     </td>
     <td>
       <form id="form" method="get" action="control" target="response" onsubmit="return onFormSubmit();">
@@ -56,7 +63,36 @@
               <p class="warning-text" hidden>Не выбрана координата X.</p>
             </td>
             <td width="60%" align="center" rowspan="5">
-              <iframe name="response" id="response"></iframe>
+<%--              TODO--%>
+              <div name="response" id="response">
+                <%
+                  ArrayList<Point> list = (ArrayList<Point>) request.getSession().getAttribute("list");
+                  if (list != null){
+                    ArrayList<Point> points = (ArrayList<Point>) list.clone();
+                    Collections.reverse(points);
+                %>
+                <table class='response' align='center'>
+                  <thead>
+                  <tr align='center'>
+                    <th> <h5>Х</h5></th>
+                    <th> <h5>Y</h5></th>
+                    <th> <h5>R</h5></th>
+                    <th> <h5>Результат</h5></th>
+                    <th> <h5>Время</h5></th>
+                  </tr>
+                  </thead>
+                  <% for (Point point: points) {%>
+                  <tr align='center'>
+                    <td><%= point.getX()%></td>
+                    <td><%=point.getY()%></td>
+                    <td><%=point.getR()%></td>
+                    <td><%= (point.isInArea()) ? "Попала" : "Не попала"%></td>
+                    <td><%=point.getTime()%></td>
+                  </tr>
+                  <%}%>
+                </table>
+                <% } %>
+              </div>
             </td>
           </tr>
           <tr>

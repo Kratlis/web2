@@ -28,33 +28,6 @@ public class AreaCheckServlet extends HttpServlet {
         return config;
     }
 
-/*
-    private String drawTable(ArrayList<Point> list){
-        Collections.reverse(list);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("<table class='response' align='center'><thead><tr align='center'>\n" +
-                "    <th> <h5>Х</h5></th>" +
-                "    <th> <h5>Y</h5></th>" +
-                "    <th> <h5>R</h5></th>" +
-                "    <th> <h5>Результат</h5></th>" +
-                "    <th> <h5>Время</h5></th>" +
-                "    </tr></thead>");
-
-        for (Point point: list) {
-            stringBuilder.append("<tr align='center'>" + "<td>").append(point.getX()).append("</td>")
-                    .append("<td>").append(point.getY()).append("</td>")
-                    .append("<td>").append(point.getR()).append("</td>")
-                    .append("<td>");
-            stringBuilder.append((point.isInArea()) ? "Попала" : "Не попала").append("</td><td>")
-                    .append(point.getTime());
-            stringBuilder.append("</td></tr>");
-        }
-
-        stringBuilder.append("</table>");
-        return String.valueOf(stringBuilder);
-    }
-*/
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Point> list = (ArrayList<Point>) request.getSession().getAttribute("list");
         if (list == null){
@@ -72,41 +45,7 @@ public class AreaCheckServlet extends HttpServlet {
         }
 
         response.setContentType("text/html");
-        request.getServletContext().getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);//        PrintWriter out = response.getWriter();
-//        out.println("<!DOCTYPE HTML> " +
-//                "<html lang='ru'> " +
-//                "<head> " +
-//                "<meta charset='UTF-8'> " +
-//                "<style>" +
-//                ".warning{" +
-//                "            color: firebrick;" +
-//                "        }" +
-//                "body{" +
-//                "    height: 100%;" +
-//                "}" +
-//                "table{" +
-//                "    width: 100%;" +
-//                "    font-family: Verdana, sans-serif;" +
-//                "}" +
-//                "th{" +
-//                "    font-weight: lighter;" +
-//                "    height: 30px;" +
-//                "    vertical-align: bottom;" +
-//                "}" +
-//                ".coordinate{" +
-//                "    font-family: Verdana, sans-serif;\n" +
-//                "}" +
-//                "\n" +
-//                ".response{" +
-//                "    background-color: wheat;" +
-//                "}" +
-//                "</style>" +
-//                "</head> " +
-//                "<body>");
-//
-//        out.println(drawTable(list));
-//        out.println("</body>" +
-//                "</html>");
+        request.getServletContext().getRequestDispatcher("/WEB-INF/result.jsp").forward(request, response);
     }
 
 

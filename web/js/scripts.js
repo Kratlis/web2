@@ -104,11 +104,11 @@ function drawCanvas(R) {
         alert("Ваш браузер не поддерживает элемент HTML5 Canvas.")
         document.getElementById("support").innerHTML =
             "<br><br>" +
-            "<img src='area.jpg' alt='Область' width='420' height='380'>";
+            "<img src='../area.jpg' alt='Область' width='420' height='380'>";
         return;
     }
     canvas.height = 300;
-    canvas.width = 300;
+    canvas.width = 500;
     ctx.fillStyle = '#3355ff';
     ctx.beginPath();
     ctx.moveTo(150, 210);
